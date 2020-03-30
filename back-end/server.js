@@ -87,11 +87,12 @@ app.delete('/api/items/:id', async (req, res) => {
 
 // Edit Title
 app.put('/api/items/:id', async (req, res) => {
-  let item = Item.findOne({
-    _id: req.params.id,
-  });
-  item.title = req.body.title
   try {
+    let item = await Item.findOne({
+    _id: req.params.id,
+    });
+    item.title = req.body.title
+    item.description = req.body.description
     await item.save();
     res.sendStatus(200);
   } catch (error) {

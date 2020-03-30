@@ -116,6 +116,7 @@ export default {
       try {
         await axios.put("/api/items/" + item._id, {
           title: this.findItem.title,
+          description: this.findItem.description
         });
         this.findItem = null;
         this.getItems();
