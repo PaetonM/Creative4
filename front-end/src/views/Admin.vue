@@ -7,7 +7,8 @@
   </div>
   <div class="add">
     <div class="form">
-      <input v-model="title" placeholder="Title">
+      <input v-model="title" placeholder="Title"><p></p>
+      <input v-model="description" placeholder="Item Description">
       <p></p>
       <input type="file" name="photo" @change="fileChanged">
       <button @click="upload">Upload</button>
@@ -15,6 +16,7 @@
     <div class="upload" v-if="addItem">
       <h2>{{addItem.title}}</h2>
       <img :src="addItem.path" />
+      <h3>{{addItem.description}}</h3>
     </div>
   </div>
   <div class="heading">
@@ -33,9 +35,12 @@
       <input v-model="findItem.title">
       <p></p>
       <img :src="findItem.path" />
+      <p></p>
+      <input v-model="findItem.description">
     </div>
     <div class="actions" v-if="findItem">
       <button @click="deleteItem(findItem)">Delete</button>
+      <button @click="editItem(findItem)">Edit Title/Description</button>
     </div>
   </div>
 </div>
@@ -48,6 +53,7 @@ export default {
   data() {
     return {
       title: "",
+      description: "",
       file: null,
       addItem: null,
       items: [],
@@ -75,6 +81,7 @@ export default {
         let r1 = await axios.post('/api/photos', formData);
         let r2 = await axios.post('/api/items', {
           title: this.title,
+          description: this.description,
           path: r1.data.path
         });
         this.addItem = r2.data;
@@ -98,6 +105,18 @@ export default {
     async deleteItem(item) {
       try {
         await axios.delete("/api/items/" + item._id);
+        this.findItem = null;
+        this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async editItem(item) {
+      try {
+        await axios.put("/api/items/" + item._id, {
+          title: this.findItem.title,
+        });
         this.findItem = null;
         this.getItems();
         return true;

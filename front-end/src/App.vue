@@ -14,12 +14,20 @@
     <router-view />
   </div>
   <div class="footer">
-    <router-link to="/admin">Admin</router-link>
+    <p>
+      <router-link to="/admin">Admin</router-link>
+      <span class="invisible">thisistocreatespacebetweentherouterlinkandlabatthebottom</span>
+      <a href="https://github.com/BYU-CS-260-Winter-2020/lab-4-museum-of-ordinary-objects-PaetonM">Paeton's Lab 4</a>
+    </p>
   </div>
 </div>
 </template>
 
 <style>
+#app {
+    margin-bottom: 75px;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -55,10 +63,21 @@ body {
 
 /* Footer */
 .footer {
-  height: 50px;
-  padding: 20px 100px 0px 100px;
   background: #e3e3e3;
   font-size: 12px;
+  position: fixed;
+  width: 100%;
+  border: solid 3px;
+  bottom: 0px;
+  text-align: center;
+  height: 75px;
+  line-height: 75px;
+  color: black;
+  bottom: 0px;
+}
+
+.invisible {
+  color: #e3e3e3;
 }
 
 .footer a {
