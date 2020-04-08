@@ -1,9 +1,9 @@
 <template>
 <div class="admin">
-  <h1>The Admin Page!</h1>
+  <h1>The Creator Page!</h1>
   <div class="heading">
     <div class="circle">1</div>
-    <h2>Add an Item</h2>
+    <h2>Add a Hero</h2>
   </div>
   <div class="add">
     <div class="form">
