@@ -3,11 +3,11 @@
   <div class="header">
     <router-link to="/">
       <div class="logo">
-        <img src="/ordinary.png">
+        <img src="/hero.png">
       </div>
     </router-link>
     <div class="title">
-      <h1>Museum of Ordinary Objects</h1>
+      <h1>Website of Heroes</h1>
     </div>
   </div>
   <div class="content">
@@ -43,9 +43,17 @@ body {
 /* Header */
 .header {
   display: flex;
-  padding: 10px 100px 0px 100px;
+  padding: 2px 10px 10px;
+  /*padding: 10px 100px 0px 100px;original padding*/
   background-color: #5BDEFF;
   color: #1C454F;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  padding-right: 30px;
+  padding-top: 5px;
 }
 
 .title {

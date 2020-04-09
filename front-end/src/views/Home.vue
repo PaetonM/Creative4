@@ -2,9 +2,12 @@
   <div class="home">
     <section class="image-gallery">
       <div class="image" v-for="item in items" :key="item.id">
-        <h2>{{item.title}}</h2>
+        <h1>Name: {{item.title}}</h1>
         <img :src="item.path" />
-        <h3>{{item.description}}</h3>
+        <h3><strong>Description:</strong> {{item.description}}</h3>
+        <h3>Attack: {{item.attack}}</h3>
+        <h3>Defense: {{item.defense}}</h3>
+        <h3>Special: {{item.special}}</h3>
       </div>
     </section>
   </div>
@@ -51,6 +54,7 @@ export default {
 
 .image-gallery {
   column-gap: 1.5em;
+  font-family: 'marvel';
 }
 
 .image {

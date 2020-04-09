@@ -27,6 +27,9 @@ mongoose.connect('mongodb://localhost:27017/museum', {
 const itemSchema = new mongoose.Schema({
   title: String,
   description: String,
+  attack: String,
+  defense: String,
+  special: String,
   path: String,
 });
 
@@ -50,6 +53,9 @@ app.post('/api/items', async (req, res) => {
   const item = new Item({
     title: req.body.title,
     description: req.body.description,
+    attack: req.body.attack,
+    defense: req.body.defense,
+    special: req.body.special,
     path: req.body.path,
   });
   try {
@@ -93,6 +99,9 @@ app.put('/api/items/:id', async (req, res) => {
     });
     item.title = req.body.title
     item.description = req.body.description
+    item.attack = req.body.attack
+    item.defense = req.body.defense
+    item.special = req.body.special
     await item.save();
     res.sendStatus(200);
   } catch (error) {

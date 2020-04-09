@@ -7,8 +7,11 @@
   </div>
   <div class="add">
     <div class="form">
-      <input v-model="title" placeholder="Title"><p></p>
-      <input v-model="description" placeholder="Item Description">
+      <input v-model="title" placeholder="Name"><p></p>
+      <input v-model="description" placeholder="Hero Description"><p></p>
+      <input v-model="attack" placeholder="Attack Stat"><p></p>
+      <input v-model="defense" placeholder="Defense Stat"><p></p>
+      <input v-model="special" placeholder="Special">
       <p></p>
       <input type="file" name="photo" @change="fileChanged">
       <button @click="upload">Upload</button>
@@ -17,6 +20,9 @@
       <h2>{{addItem.title}}</h2>
       <img :src="addItem.path" />
       <h3>{{addItem.description}}</h3>
+      <h3>{{addItem.attack}}</h3>
+      <h3>{{addItem.defense}}</h3>
+      <h3>{{addItem.special}}</h3>
     </div>
   </div>
   <div class="heading">
@@ -37,10 +43,16 @@
       <img :src="findItem.path" />
       <p></p>
       <input v-model="findItem.description">
+      <p></p>
+      <input v-model="findItem.attack">
+      <p></p>
+      <input v-model="findItem.defense">
+      <p></p>
+      <input v-model="findItem.special">
     </div>
     <div class="actions" v-if="findItem">
       <button @click="deleteItem(findItem)">Delete</button>
-      <button @click="editItem(findItem)">Edit Title/Description</button>
+      <button @click="editItem(findItem)">Edit Hero Info</button>
     </div>
   </div>
 </div>
@@ -54,6 +66,9 @@ export default {
     return {
       title: "",
       description: "",
+      attack: "",
+      defense: "",
+      special: "",
       file: null,
       addItem: null,
       items: [],
@@ -82,6 +97,9 @@ export default {
         let r2 = await axios.post('/api/items', {
           title: this.title,
           description: this.description,
+          attack: this.attack,
+          defense: this.defense,
+          special: this.special,
           path: r1.data.path
         });
         this.addItem = r2.data;
@@ -116,7 +134,10 @@ export default {
       try {
         await axios.put("/api/items/" + item._id, {
           title: this.findItem.title,
-          description: this.findItem.description
+          description: this.findItem.description,
+          attack: this.findItem.attack,
+          defense: this.findItem.defense,
+          special: this.findItem.special,
         });
         this.findItem = null;
         this.getItems();
