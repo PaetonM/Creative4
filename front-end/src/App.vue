@@ -8,6 +8,11 @@
     </router-link>
     <div class="title">
       <h1>Website of Heroes</h1>
+      <router-link to="/">Home</router-link>
+      <span class="invisiblemenu">spaces</span>
+      <router-link to="/admin" >Admin</router-link>
+      <span class="invisiblemenu">spaces</span>
+      <router-link to="/weapons">Weapons</router-link>
     </div>
   </div>
   <div class="content">
@@ -16,8 +21,8 @@
   <div class="footer">
     <p>
       <router-link to="/admin">Admin</router-link>
-      <span class="invisible">thisistocreatespacebetweentherouterlinkandlabatthebottom</span>
-      <a href="https://github.com/BYU-CS-260-Winter-2020/lab-4-museum-of-ordinary-objects-PaetonM">Paeton's Lab 4</a>
+      <span class="invisible" >thisistocreatespacebetweentherouterlinkandlabatthebottom</span>
+      <a href="https://github.com/PaetonM/Creative4">Paeton and Braden Creative 4</a>
     </p>
   </div>
 </div>
@@ -98,5 +103,9 @@ h1 {
 
 h2 {
   font-size: 14px;
+}
+
+.invisiblemenu {
+  color: #5BDEFF;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
 <div class="admin">
   <h1>The Creator Page!</h1>
+
   <div class="heading">
     <div class="circle">1</div>
     <h2>Add a Hero</h2>
@@ -58,7 +59,7 @@
 </div>
 </template>
 
-<script>
+<script scoped>
 import axios from 'axios';
 export default {
   name: 'Admin',
@@ -148,6 +149,12 @@ export default {
     },
   }
 }
+var password = prompt("Please Enter Password","password");
+
+while (password != "CS260") {
+  password = window.prompt("Please Enter The Correct Password","password");
+}
+alert("Successfully Logged In");
 </script>
 
 <style scoped>
