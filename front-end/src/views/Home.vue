@@ -8,6 +8,8 @@
         <h3><span>Attack: </span>{{item.attack}}</h3>
         <h3><span>Defense: </span>{{item.defense}}</h3>
         <h3><span>Special: </span>{{item.special}}</h3>
+        <h3><span>Weapon: </span>{{item.weapon}}</h3>
+
       </div>
     </section>
   </div>

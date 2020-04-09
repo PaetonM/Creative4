@@ -30,6 +30,7 @@ const itemSchema = new mongoose.Schema({
   attack: String,
   defense: String,
   special: String,
+  weapon: String,
   path: String,
 });
 
@@ -56,6 +57,7 @@ app.post('/api/items', async (req, res) => {
     attack: req.body.attack,
     defense: req.body.defense,
     special: req.body.special,
+    weapon: req.body.weapon,
     path: req.body.path,
   });
   try {
@@ -102,6 +104,7 @@ app.put('/api/items/:id', async (req, res) => {
     item.attack = req.body.attack
     item.defense = req.body.defense
     item.special = req.body.special
+    item.weapon = req.body.weapon
     await item.save();
     res.sendStatus(200);
   } catch (error) {

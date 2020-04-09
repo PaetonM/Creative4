@@ -39,17 +39,17 @@
       </div>
     </div>
     <div class="upload" v-if="findItem">
-      <input v-model="findItem.title">
+      <input v-model="findItem.title" placeholder="Name">
       <p></p>
       <img :src="findItem.path" />
       <p></p>
-      <input v-model="findItem.description">
+      <input v-model="findItem.description" placeholder="Description">
       <p></p>
-      <input v-model="findItem.attack">
+      <input v-model="findItem.attack" placeholder="Attack Stat">
       <p></p>
-      <input v-model="findItem.defense">
+      <input v-model="findItem.defense" placeholder="Defense Stat">
       <p></p>
-      <input v-model="findItem.special">
+      <input v-model="findItem.special" placeholder="Special">
     </div>
     <div class="actions" v-if="findItem">
       <button @click="deleteItem(findItem)">Delete</button>
