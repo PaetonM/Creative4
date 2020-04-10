@@ -34,8 +34,20 @@ const itemSchema = new mongoose.Schema({
   path: String,
 });
 
+
+
 // Create a model for items in the museum.
 const Item = mongoose.model('Item', itemSchema);
+
+const itemSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  attack: String,
+  defense: String,
+  path: String,
+});
+
+const Weapon = mongoose.model('Weapon', itemSchema);
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
 // the path where the photo is stored in the file system.
@@ -63,6 +75,23 @@ app.post('/api/items', async (req, res) => {
   try {
     await item.save();
     res.send(item);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+app.post('/api/weapons', async (req, res) => {
+  const weapon = new Weapon({
+    title: req.body.wtitle,
+    description: req.body.wdescription,
+    attack: req.body.wattack,
+    defense: req.body.wdefense,
+    path: req.body.path,
+  });
+  try {
+    await weapon.save();
+    res.send(weapon);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

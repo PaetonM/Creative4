@@ -76,7 +76,7 @@ img {
 
 /* Footer */
 .footer {
-  background: #e3e3e3;
+  background: #5BDEFF;
   font-size: 12px;
   position: fixed;
   width: 100%;
@@ -90,7 +90,7 @@ img {
 }
 
 .invisible {
-  color: #e3e3e3;
+  color: #5BDEFF;
 }
 
 .footer a {

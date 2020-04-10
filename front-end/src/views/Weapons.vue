@@ -1,61 +1,78 @@
 <template>
-<div class="admin">
-  <h1>The Weapons Page</h1>
-
-  <div class="heading">
-    <div class="circle">1</div>
-    <h2>Pick a Hero to add a weapon</h2>
-  </div>
-  <!--div class="add">
-    <div class="form">
-      <input v-model="title" placeholder="Name"><p></p>
-      <input v-model="description" placeholder="Hero Description"><p></p>
-      <input v-model="attack" placeholder="Attack Stat"><p></p>
-      <input v-model="defense" placeholder="Defense Stat"><p></p>
-      <input v-model="special" placeholder="Special">
-      <p></p>
-      <input type="file" name="photo" @change="fileChanged">
-      <button @click="upload">Upload</button>
+<div>
+  <div class="addweapon">
+    <h1>The Weapons Page</h1>
+    <div class="heading">
+      <div class="circle">1</div>
+      <h2>Pick a Hero to add a weapon down below</h2>
     </div>
-    <div class="upload" v-if="addItem">
-      <h2>{{addItem.title}}</h2>
-      <img :src="addItem.path" />
-      <h3>{{addItem.description}}</h3>
-      <h3>{{addItem.attack}}</h3>
-      <h3>{{addItem.defense}}</h3>
-      <h3>{{addItem.special}}</h3>
+    <!--div class="add">
+      <div class="form">
+        <input v-model="title" placeholder="Name"><p></p>
+        <input v-model="description" placeholder="Hero Description"><p></p>
+        <input v-model="attack" placeholder="Attack Stat"><p></p>
+        <input v-model="defense" placeholder="Defense Stat"><p></p>
+        <input v-model="special" placeholder="Special">
+        <p></p>
+        <input type="file" name="photo" @change="fileChanged">
+        <button @click="upload">Upload</button>
+      </div>
+      <div class="upload" v-if="addItem">
+        <h2>{{addItem.title}}</h2>
+        <img :src="addItem.path" />
+        <h3>{{addItem.description}}</h3>
+        <h3>{{addItem.attack}}</h3>
+        <h3>{{addItem.defense}}</h3>
+        <h3>{{addItem.special}}</h3>
+      </div>
+    </div-->
+    <div class="heading">
+      <div class="circle">2</div>
+      <h2>Add weapon</h2>
     </div>
-  </div-->
-  <div class="heading">
-    <div class="circle">2</div>
-    <h2>Add weapon</h2>
-  </div>
-  <div class="edit">
-    <div class="form">
-      <input v-model="findTitle" placeholder="Search">
-      <div class="suggestions" v-if="suggestions.length > 0">
-        <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
+    <div class="edit">
+      <div class="form">
+        <input v-model="findTitle" placeholder="Search">
+        <div class="suggestions" v-if="suggestions.length > 0">
+          <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
+          </div>
         </div>
       </div>
+      <div class="upload" v-if="findItem">
+        <input v-model="findItem.title" placeholder="Name">
+        <p></p>
+        <input v-model="findItem.weapon" placeholder="New Weapon">
+        <p></p>
+        <img :src="findItem.path" />
+        <p></p>
+        <!--input v-model="findItem.description">
+        <p></p>
+        <input v-model="findItem.attack">
+        <p></p>
+        <input v-model="findItem.defense">
+        <p></p>
+        <input v-model="findItem.special"-->
+      </div>
+      <div class="actions" v-if="findItem">
+        <!--button @click="deleteItem(findItem)">Delete</button-->
+        <button @click="editItem(findItem)">Add weapon</button>
+      </div>
     </div>
-    <div class="upload" v-if="findItem">
-      <input v-model="findItem.title" placeholder="Name">
-      <p></p>
-      <input v-model="findItem.weapon" placeholder="New Weapon">
-      <p></p>
-      <img :src="findItem.path" />
-      <p></p>
-      <!--input v-model="findItem.description">
-      <p></p>
-      <input v-model="findItem.attack">
-      <p></p>
-      <input v-model="findItem.defense">
-      <p></p>
-      <input v-model="findItem.special"-->
-    </div>
-    <div class="actions" v-if="findItem">
-      <!--button @click="deleteItem(findItem)">Delete</button-->
-      <button @click="editItem(findItem)">Add weapon</button>
+  </div>
+  <div class="displayweapons">
+    <div class="home">
+      <section class="image-gallery">
+        <div class="image" v-for="item in items" :key="item.id">
+          <h1><span>Name: </span>{{item.title}}</h1>
+          <img :src="item.path" />
+          <h3><span>Description: </span>{{item.description}}</h3>
+          <h3><span>Attack: </span>{{item.attack}}</h3>
+          <h3><span>Defense: </span>{{item.defense}}</h3>
+          <h3><span>Special: </span>{{item.special}}</h3>
+          <h3><span>Weapon: </span>{{item.weapon}}</h3>
+
+        </div>
+      </section>
     </div>
   </div>
 </div>
@@ -171,15 +188,24 @@ export default {
     },
   }
 }
-var password = prompt("Please Enter Password","password");
-
-while (password != "CS260") {
-  password = window.prompt("Please Enter The Correct Password","password");
-}
-alert("Successfully Logged In");
 </script>
 
 <style scoped>
+.displayweapons {
+  background-color: yellow;
+  width: 50%;
+  height: 2000px;
+  float: right;
+}
+
+
+.addweapon {
+  width: 40%;
+  float: left;
+  position: fixed;
+}
+
+
 .image h2 {
   font-style: italic;
   font-size: 1em;
@@ -221,7 +247,7 @@ button {
 }
 
 .form {
-  margin-right: 50px;
+  margin-right: 5px;
 }
 
 /* Uploaded images */

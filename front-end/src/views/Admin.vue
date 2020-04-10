@@ -1,59 +1,114 @@
 <template>
 <div class="admin">
   <h1>The Creator Page!</h1>
-
-  <div class="heading">
-    <div class="circle">1</div>
-    <h2>Add a Hero</h2>
-  </div>
-  <div class="add">
-    <div class="form">
-      <input v-model="title" placeholder="Name"><p></p>
-      <input v-model="description" placeholder="Hero Description"><p></p>
-      <input v-model="attack" placeholder="Attack Stat"><p></p>
-      <input v-model="defense" placeholder="Defense Stat"><p></p>
-      <input v-model="special" placeholder="Special">
-      <p></p>
-      <input type="file" name="photo" @change="fileChanged">
-      <button @click="upload">Upload</button>
+  <div class="createhero">
+    <div class="heading">
+      <div class="circle">1</div>
+      <h2>Add a Hero</h2>
     </div>
-    <div class="upload" v-if="addItem">
-      <h2>{{addItem.title}}</h2>
-      <img :src="addItem.path" />
-      <h3>{{addItem.description}}</h3>
-      <h3>{{addItem.attack}}</h3>
-      <h3>{{addItem.defense}}</h3>
-      <h3>{{addItem.special}}</h3>
-    </div>
-  </div>
-  <div class="heading">
-    <div class="circle">2</div>
-    <h2>Edit/Delete an Item</h2>
-  </div>
-  <div class="edit">
-    <div class="form">
-      <input v-model="findTitle" placeholder="Search">
-      <div class="suggestions" v-if="suggestions.length > 0">
-        <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
-        </div>
+    <div class="add">
+      <div class="form">
+        <input v-model="title" placeholder="Name"><p></p>
+        <input v-model="description" placeholder="Hero Description"><p></p>
+        <input v-model="attack" placeholder="Attack Stat"><p></p>
+        <input v-model="defense" placeholder="Defense Stat"><p></p>
+        <input v-model="special" placeholder="Special">
+        <p></p>
+        <input type="file" name="photo" @change="fileChanged">
+        <button @click="upload">Upload</button>
+      </div>
+      <div class="upload" v-if="addItem">
+        <h2>{{addItem.title}}</h2>
+        <img :src="addItem.path" />
+        <h3>{{addItem.description}}</h3>
+        <h3>{{addItem.attack}}</h3>
+        <h3>{{addItem.defense}}</h3>
+        <h3>{{addItem.special}}</h3>
       </div>
     </div>
-    <div class="upload" v-if="findItem">
-      <input v-model="findItem.title" placeholder="Name">
-      <p></p>
-      <img :src="findItem.path" />
-      <p></p>
-      <input v-model="findItem.description" placeholder="Description">
-      <p></p>
-      <input v-model="findItem.attack" placeholder="Attack Stat">
-      <p></p>
-      <input v-model="findItem.defense" placeholder="Defense Stat">
-      <p></p>
-      <input v-model="findItem.special" placeholder="Special">
+    <div class="heading">
+      <div class="circle">2</div>
+      <h2>Edit/Delete a Hero</h2>
     </div>
-    <div class="actions" v-if="findItem">
-      <button @click="deleteItem(findItem)">Delete</button>
-      <button @click="editItem(findItem)">Edit Hero Info</button>
+    <div class="edit">
+      <div class="form">
+        <input v-model="findTitle" placeholder="Search">
+        <div class="suggestions" v-if="suggestions.length > 0">
+          <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
+          </div>
+        </div>
+      </div>
+      <div class="upload" v-if="findItem">
+        <input v-model="findItem.title" placeholder="Name">
+        <p></p>
+        <img :src="findItem.path" />
+        <p></p>
+        <input v-model="findItem.description" placeholder="Description">
+        <p></p>
+        <input v-model="findItem.attack" placeholder="Attack Stat">
+        <p></p>
+        <input v-model="findItem.defense" placeholder="Defense Stat">
+        <p></p>
+        <input v-model="findItem.special" placeholder="Special">
+      </div>
+      <div class="actions" v-if="findItem">
+        <button @click="deleteItem(findItem)">Delete</button>
+        <button @click="editItem(findItem)">Edit Hero Info</button>
+      </div>
+    </div>
+  </div>
+  <div class="createweapon">
+    <div class="heading">
+      <div class="circle">1</div>
+      <h2>Add a Weapon</h2>
+    </div>
+    <div class="add">
+      <div class="form">
+        <input v-model="wtitle" placeholder="Weapon Name"><p></p>
+        <input v-model="wdescription" placeholder="Weapon Description"><p></p>
+        <input v-model="wattack" placeholder="Attack Stat"><p></p>
+        <input v-model="wdefense" placeholder="Defense Stat"><p></p>
+        <p></p>
+        <input type="file" name="photo" @change="fileChanged2">
+        <button @click="uploadtwo">Upload</button>
+      </div>
+      <div class="uploadtwo" v-if="addItemtwo">
+        <h2>{{addItemtwo.title}}</h2>
+        <img :src="addItemtwo.path" />
+        <h3>{{addItemtwo.description}}</h3>
+        <h3>{{addItemtwo.attack}}</h3>
+        <h3>{{addItemtwo.defense}}</h3>
+      </div>
+    </div>
+    <div class="heading">
+      <div class="circle">2</div>
+      <h2>Edit/Delete a Weapon</h2>
+    </div>
+    <div class="edit">
+      <div class="form">
+        <input v-model="findTitle" placeholder="Search">
+        <div class="suggestions" v-if="suggestions.length > 0">
+          <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
+          </div>
+        </div>
+      </div>
+      <div class="upload" v-if="findItem">
+        <input v-model="findItem.title" placeholder="Name">
+        <p></p>
+        <img :src="findItem.path" />
+        <p></p>
+        <input v-model="findItem.description" placeholder="Description">
+        <p></p>
+        <input v-model="findItem.attack" placeholder="Attack Stat">
+        <p></p>
+        <input v-model="findItem.defense" placeholder="Defense Stat">
+        <p></p>
+        <input v-model="findItem.special" placeholder="Special">
+      </div>
+      <div class="actions" v-if="findItem">
+        <button @click="deleteItem(findItem)">Delete</button>
+        <button @click="editItem(findItem)">Edit Hero Info</button>
+      </div>
     </div>
   </div>
 </div>
@@ -66,13 +121,19 @@ export default {
   data() {
     return {
       title: "",
+      wtitle: "",
       description: "",
+      wdescription: "",
       attack: "",
+      wattack: "",
       defense: "",
+      wdefense: "",
       special: "",
       file: null,
       addItem: null,
+      addItemtwo: null,
       items: [],
+      weapons: [],
       findTitle: "",
     findItem: null,
     }
@@ -90,6 +151,9 @@ export default {
     fileChanged(event) {
       this.file = event.target.files[0]
     },
+    fileChanged2(event) {
+      this.file = event.target.files[0]
+    },
     async upload() {
       try {
         const formData = new FormData();
@@ -104,6 +168,23 @@ export default {
           path: r1.data.path
         });
         this.addItem = r2.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async uploadtwo() {
+      try {
+        const formData = new FormData();
+        formData.append('photo', this.file, this.file.name)
+        let r1 = await axios.post('/api/photos', formData);
+        let r2 = await axios.post('/api/weapons', {
+          title: this.wtitle,
+          description: this.wdescription,
+          attack: this.wattack,
+          defense: this.wdefense,
+          path: r1.data.path
+        });
+        this.addItemtwo = r2.data;
       } catch (error) {
         console.log(error);
       }
@@ -149,15 +230,25 @@ export default {
     },
   }
 }
-var password = prompt("Please Enter Password","password");
+//var password = prompt("Please Enter Password","password");
 
-while (password != "CS260") {
-  password = window.prompt("Please Enter The Correct Password","password");
-}
-alert("Successfully Logged In");
+// (password != "CS260") {
+  //password = window.prompt("Please Enter The Correct Password","password");
+//}
+//alert("Successfully Logged In");
 </script>
 
 <style scoped>
+.createhero {
+  width: 40%;
+  float: left;
+}
+
+.createweapon {
+  width: 40%;
+  float: right;
+}
+
 .image h2 {
   font-style: italic;
   font-size: 1em;
