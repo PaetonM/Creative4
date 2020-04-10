@@ -176,13 +176,13 @@ export default {
       try {
         const formData = new FormData();
         formData.append('photo', this.file, this.file.name)
-        let r1 = await axios.post('/api/photos', formData);
+        let r1 = await axios.post('/api/wphotos', formData);
         let r2 = await axios.post('/api/weapons', {
-          title: this.wtitle,
-          description: this.wdescription,
-          attack: this.wattack,
-          defense: this.wdefense,
-          path: r1.data.path
+          wtitle: this.wtitle,
+          wdescription: this.wdescription,
+          wattack: this.wattack,
+          wdefense: this.wdefense,
+          wpath: r1.data.path
         });
         this.addItemtwo = r2.data;
       } catch (error) {
@@ -239,15 +239,7 @@ export default {
 </script>
 
 <style scoped>
-.createhero {
-  width: 40%;
-  float: left;
-}
 
-.createweapon {
-  width: 40%;
-  float: right;
-}
 
 .image h2 {
   font-style: italic;

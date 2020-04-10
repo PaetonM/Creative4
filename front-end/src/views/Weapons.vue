@@ -62,14 +62,12 @@
   <div class="displayweapons">
     <div class="home">
       <section class="image-gallery">
-        <div class="image" v-for="item in items" :key="item.id">
+        <div class="image" v-for="item in weapons" :key="item.id">
           <h1><span>Name: </span>{{item.title}}</h1>
           <img :src="item.path" />
           <h3><span>Description: </span>{{item.description}}</h3>
           <h3><span>Attack: </span>{{item.attack}}</h3>
           <h3><span>Defense: </span>{{item.defense}}</h3>
-          <h3><span>Special: </span>{{item.special}}</h3>
-          <h3><span>Weapon: </span>{{item.weapon}}</h3>
 
         </div>
       </section>
@@ -89,7 +87,7 @@ export default {
       attack: "",
       defense: "",
       special: "",
-      weapon: "",
+      weapons: "",
       file: null,
       addItem: null,
       items: [],
@@ -131,8 +129,8 @@ export default {
     },
     async getItems() {
       try {
-        let response = await axios.get("/api/items");
-        this.items = response.data;
+        let response = await axios.get("/api/weapons");
+        this.weapons = response.data;
         return true;
       } catch (error) {
         console.log(error);
