@@ -32,7 +32,7 @@
     </div>
     <div class="edit">
       <div class="form">
-        <input v-model="findTitle" placeholder="Search">
+        <input v-model="findTitle" placeholder="Search Heroes">
         <div class="suggestions" v-if="suggestions.length > 0">
           <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
           </div>
@@ -86,28 +86,26 @@
     </div>
     <div class="edit">
       <div class="form">
-        <input v-model="findTitle" placeholder="Search">
-        <div class="suggestions" v-if="suggestions.length > 0">
-          <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}
+        <input v-model="findTitletwo" placeholder="Search Weapons">
+        <div class="suggestions" v-if="suggestionstwo.length > 0">
+          <div class="suggestion" v-for="s in suggestionstwo" :key="s.id" @click="selectWeapon(s)">{{s.title}}
           </div>
         </div>
       </div>
-      <div class="upload" v-if="findItem">
-        <input v-model="findItem.title" placeholder="Name">
+      <div class="upload" v-if="findWeapon">
+        <input v-model="findWeapon.title" placeholder="Name">
         <p></p>
-        <img :src="findItem.path" />
+        <img :src="findWeapon.path" />
         <p></p>
-        <input v-model="findItem.description" placeholder="Description">
+        <input v-model="findWeapon.description" placeholder="Description">
         <p></p>
-        <input v-model="findItem.attack" placeholder="Attack Stat">
+        <input v-model="findWeapon.attack" placeholder="Attack Stat">
         <p></p>
-        <input v-model="findItem.defense" placeholder="Defense Stat">
-        <p></p>
-        <input v-model="findItem.special" placeholder="Special">
+        <input v-model="findWeapon.defense" placeholder="Defense Stat">
       </div>
-      <div class="actions" v-if="findItem">
-        <button @click="deleteItem(findItem)">Delete</button>
-        <button @click="editItem(findItem)">Edit Hero Info</button>
+      <div class="actions" v-if="findWeapon">
+        <button @click="deleteWeapon(findWeapon)">Delete</button>
+        <button @click="editWeapon(findWeapon)">Edit Weapon Info</button>
       </div>
     </div>
   </div>
@@ -135,17 +133,24 @@ export default {
       items: [],
       weapons: [],
       findTitle: "",
+      findTitletwo: "",
     findItem: null,
+    findWeapon: null,
     }
   },
   computed: {
     suggestions() {
       let items = this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
       return items.sort((a, b) => a.title > b.title);
+    },
+    suggestionstwo() {
+      let weapons = this.weapons.filter(weapon => weapon.title.toLowerCase().startsWith(this.findTitletwo.toLowerCase()));
+      return weapons.sort((a, b) => a.title > b.title);
     }
   },
   created() {
     this.getItems();
+    this.getWeapons();
   },
   methods: {
     fileChanged(event) {
@@ -198,15 +203,38 @@ export default {
         console.log(error);
       }
     },
+    async getWeapons() {
+      try {
+        let response = await axios.get("/api/weapons");
+        this.weapons = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     selectItem(item) {
       this.findTitle = "";
       this.findItem = item;
+    },
+    selectWeapon(weapon) {
+      this.findTitletwo = "";
+      this.findWeapon = weapon;
     },
     async deleteItem(item) {
       try {
         await axios.delete("/api/items/" + item._id);
         this.findItem = null;
         this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteWeapon(weapon) {
+      try {
+        await axios.delete("/api/weapons/" + weapon._id);
+        this.findWeapon = null;
+        this.getWeapons();
         return true;
       } catch (error) {
         console.log(error);
@@ -228,6 +256,21 @@ export default {
         console.log(error);
       }
     },
+    async editWeapon(weapon) {
+      try {
+        await axios.put("/api/weapons/" + weapon._id, {
+          wtitle: this.findWeapon.title,
+          wdescription: this.findWeapon.description,
+          wattack: this.findWeapon.attack,
+          wdefense: this.findWeapon.defense,
+        });
+        this.findWeapon = null;
+        this.getWeapons();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 //var password = prompt("Please Enter Password","password");
@@ -239,8 +282,17 @@ export default {
 </script>
 
 <style scoped>
+.createhero {
+  width: 40%;
+  float: left;
+  margin-bottom: 95px;
+}
 
-
+.createweapon {
+  width: 50%;
+  float: right;
+  margin-bottom: 95px;
+}
 .image h2 {
   font-style: italic;
   font-size: 1em;

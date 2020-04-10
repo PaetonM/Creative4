@@ -149,6 +149,18 @@ app.delete('/api/items/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/weapons/:id', async (req, res) => {
+  try {
+    await Weapon.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 // Edit Title
 app.put('/api/items/:id', async (req, res) => {
   try {
@@ -162,6 +174,23 @@ app.put('/api/items/:id', async (req, res) => {
     item.special = req.body.special
     item.weapon = req.body.weapon
     await item.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+app.put('/api/weapons/:id', async (req, res) => {
+  try {
+    let weapon = await Weapon.findOne({
+    _id: req.params.id,
+    });
+    weapon.title = req.body.wtitle
+    weapon.description = req.body.wdescription
+    weapon.attack = req.body.wattack
+    weapon.defense = req.body.wdefense
+    await weapon.save();
     res.sendStatus(200);
   } catch (error) {
     console.log(error);

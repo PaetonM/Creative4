@@ -62,12 +62,12 @@
   <div class="displayweapons">
     <div class="home">
       <section class="image-gallery">
-        <div class="image" v-for="item in weapons" :key="item.id">
-          <h1><span>Name: </span>{{item.title}}</h1>
-          <img :src="item.path" />
-          <h3><span>Description: </span>{{item.description}}</h3>
-          <h3><span>Attack: </span>{{item.attack}}</h3>
-          <h3><span>Defense: </span>{{item.defense}}</h3>
+        <div class="image" v-for="weapon in weapons" :key="weapon.id">
+          <h1><span>Name: </span>{{weapon.title}}</h1>
+          <img :src="weapon.path" />
+          <h3><span>Description: </span>{{weapon.description}}</h3>
+          <h3><span>Attack: </span>{{weapon.attack}}</h3>
+          <h3><span>Defense: </span>{{weapon.defense}}</h3>
 
         </div>
       </section>
@@ -87,9 +87,10 @@ export default {
       attack: "",
       defense: "",
       special: "",
-      weapons: "",
+      weapon: "",
       file: null,
       addItem: null,
+      weapons: [],
       items: [],
       findTitle: "",
     findItem: null,
@@ -103,6 +104,7 @@ export default {
   },
   created() {
     this.getItems();
+    this.getWeapons();
   },
   methods: {
     fileChanged(event) {
@@ -127,10 +129,19 @@ export default {
         console.log(error);
       }
     },
-    async getItems() {
+    async getWeapons() {
       try {
         let response = await axios.get("/api/weapons");
         this.weapons = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getItems() {
+      try {
+        let response = await axios.get("/api/items");
+        this.items = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -190,7 +201,6 @@ export default {
 
 <style scoped>
 .displayweapons {
-  background-color: yellow;
   width: 50%;
   height: 2000px;
   float: right;
@@ -270,5 +280,20 @@ button {
 .suggestion:hover {
   background-color: #5BDEFF;
   color: #fff;
+}
+
+.image-gallery {
+  column-gap: 1.5em;
+  font-family: 'marvel';
+}
+
+.image {
+  margin: 0 0 1.5em;
+  display: inline-block;
+  width: 100%;
+}
+
+.image img {
+  margin: auto;
 }
 </style>
