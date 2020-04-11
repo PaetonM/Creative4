@@ -210,6 +210,7 @@ export default {
   width: 50%;
   height: 2000px;
   float: right;
+  margin-bottom: 95px;
 }
 
 
@@ -217,6 +218,7 @@ export default {
   width: 40%;
   float: left;
   position: fixed;
+  margin-bottom: 95px;
 }
 
 
