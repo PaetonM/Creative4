@@ -6,6 +6,7 @@
       <div class="circle">1</div>
       <h2>Add a Hero</h2>
     </div>
+    <p class="twentyfive">This is the section where you add your favorite heroes. Each hero can have a name, description, attack stat, defense stat, special, and a photo.</p>
     <div class="add">
       <div class="form">
         <input v-model="title" placeholder="Name"><p></p>
@@ -62,6 +63,7 @@
       <div class="circle">1</div>
       <h2>Add a Weapon</h2>
     </div>
+    <p class="twentyfive">This is the section where you create a weapon that a hero can use. A weapon can have a name, description, attack stat, and defense stat</p>
     <div class="add">
       <div class="form">
         <input v-model="wtitle" placeholder="Weapon Name"><p></p>
@@ -273,15 +275,19 @@ export default {
     },
   }
 }
-//var password = prompt("Please Enter Password","password");
+var password = prompt("Please Enter Password","password");
 
-// (password != "CS260") {
-  //password = window.prompt("Please Enter The Correct Password","password");
-//}
-//alert("Successfully Logged In");
+while (password != "CS260") {
+  password = window.prompt("Please Enter The Correct Password","password");
+}
+alert("Successfully Logged In");
 </script>
 
 <style scoped>
+.twentyfive {
+  width: 50%;
+}
+
 .createhero {
   width: 40%;
   float: left;
@@ -359,5 +365,19 @@ button {
 .suggestion:hover {
   background-color: #5BDEFF;
   color: #fff;
+}
+
+@media only screen and (max-width: 1024px) {
+  .createhero {
+    width: 40%;
+    float: none;
+    margin-bottom: 95px;
+  }
+
+  .createweapon {
+    width: 50%;
+    float: none;
+    margin-bottom: 95px;
+  }
 }
 </style>

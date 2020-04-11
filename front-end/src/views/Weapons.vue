@@ -6,6 +6,7 @@
       <div class="circle">1</div>
       <h2>Pick a Hero to add a weapon down below</h2>
     </div>
+    <p class="twentyfive">This is the page where a hero can have a weapon added to them. On this page is a list of example weapons. To create a weapon, return to the admin page. To add a weapon, click a hero in the list below, type in the name, and press "Add weapon".</p>
     <!--div class="add">
       <div class="form">
         <input v-model="title" placeholder="Name"><p></p>
@@ -61,6 +62,7 @@
   </div>
   <div class="displayweapons">
     <div class="home">
+      <h1>List of Weapons</h1>
       <section class="image-gallery">
         <div class="image" v-for="weapon in weapons" :key="weapon.id">
           <h1><span>Name: </span>{{weapon.title}}</h1>
@@ -200,6 +202,10 @@ export default {
 </script>
 
 <style scoped>
+.twentyfive {
+  width: 50%;
+}
+
 .displayweapons {
   width: 50%;
   height: 2000px;
@@ -295,5 +301,41 @@ button {
 
 .image img {
   margin: auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  .displayweapons {
+    width: 50%;
+    height: 2000px;
+    float: none;
+    margin-top: 600px;
+  }
+
+  .addweapon {
+    width: 40%;
+    float: none;
+    position: absolute;
+    top: 130px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .displayweapons {
+    width: 50%;
+    height: 2000px;
+    float: none;
+    margin-top: 800px;
+  }
+
+  .addweapon {
+    width: 40%;
+    float: none;
+    position: absolute;
+    top: 130px;
+  }
+
+  .twentyfive {
+    width: 75%;
+  }
 }
 </style>
