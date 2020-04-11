@@ -67,7 +67,8 @@ export default {
   display: inline-block;
   width: 33%;
   height: auto;
-  padding: 50px;
+  padding: 60px;
+  padding-bottom: 0px;
   justify-content: center;
 }
 
