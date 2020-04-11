@@ -27,8 +27,8 @@
       </div>
     </div-->
     <div class="heading">
-      <div class="circle">2</div>
-      <h2>Add weapon</h2>
+      <!--div class="circle">2</div>
+      <h2>Add weapon</h2-->
     </div>
     <div class="edit">
       <div class="form">

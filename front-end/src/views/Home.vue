@@ -57,16 +57,23 @@ export default {
 .image-gallery {
   column-gap: 1.5em;
   font-family: 'marvel';
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .image {
   margin: 0 0 1.5em;
   display: inline-block;
-  width: 100%;
+  width: 33%;
+  height: auto;
+  padding: 50px;
+  justify-content: center;
 }
 
 .image img {
   width: 100%;
+  height: auto;
 }
 
 /* Masonry on large screens */
