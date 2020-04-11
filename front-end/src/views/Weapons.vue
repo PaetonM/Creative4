@@ -217,7 +217,6 @@ export default {
 .addweapon {
   width: 40%;
   float: left;
-  position: fixed;
   margin-bottom: 95px;
 }
 
